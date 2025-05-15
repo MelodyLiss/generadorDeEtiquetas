@@ -92,11 +92,6 @@ export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
                     styleGrid: "grid-cols-3 grid-rows-2",
                     escalaTexto: 1.2,
                 };
-            case 7:
-                return {
-                    styleGrid: "grid-cols-4 grid-rows-2",
-                    escalaTexto: 1.1,
-                };
             case 8:
                 return {
                     styleGrid: "grid-cols-4 grid-rows-2",

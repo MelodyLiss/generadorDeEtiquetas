@@ -31,9 +31,9 @@ export const NuevaEtiqueta = ({ titulo, codigo, descripcion, precio, escalaTexto
                 </button>
             </div>
 
-            <div className="flex flex-col gap-0 border-1 border-gray-600 pb-1 bg-white" style={{ width: "100%", height: "100%" }}>
+            <div className="flex flex-col gap-0 border-1 border-gray-600 pb-1 bg-white " style={{ width: "100%", height: "100%" }}>
                 <div className="flex flex-col justify-center items-center gap-0" style={{ width: "100%", height: "100%" }}>
-                    <p className="uppercase font-black" style={estiloTexto.titulo}>{titulo}</p>
+                    <p className="uppercase font-black text-center " style={estiloTexto.titulo}>{titulo}</p>
                     <p className="uppercase font-medium" style={estiloTexto.codigo}>Código: {codigo}</p>
                     <p className="font-medium text-center" style={estiloTexto.descripcion}>{descripcion}</p>
                 </div>
