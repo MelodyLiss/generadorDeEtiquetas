@@ -1,46 +1,57 @@
-import { useState,useContext } from "react"
-import { EtiquetaContext } from "../context/etiquetaContext"
+import { useContext } from "react";
+import { EtiquetaContext } from "../context/etiquetaContext";
 
+export const FormEtiqueta = () => {
+    // Extraer el contexto incluyendo la función agregarEtiqueta
+    const {
+        titulo, setTitulo,
+        codigo, setCodigo,
+        descripcion, setDescripcion,
+        precio, setPrecio,
+        agregarEtiqueta
+    } = useContext(EtiquetaContext);
 
-export const FormEtiqueta = ({children}) => {
-
-    const { titulo,setTitulo,codigo,setCodigo,setDescripcion,descripcion, precio,setPrecio } = useContext(EtiquetaContext)
-
-    //Funcion para agregar etiqueta
-
+    // Función para agregar etiqueta
     const handleAgregar = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
+        const nuevaEtiqueta = {
+            titulo,
+            codigo,
+            descripcion,
+            precio,
+        };
+
+        agregarEtiqueta(nuevaEtiqueta);  // Aquí usas la función del contexto
 
         // Limpiar campos
-        setTitulo('')
-        setCodigo('')
-        setDescripcion('')
-        setPrecio('')
-
-    }
-
-
-
+        setTitulo("");
+        setCodigo("");
+        setDescripcion("");
+        setPrecio("");
+    };
 
     return (
-        <form onSubmit={(e) => e.preventDefault()} action="" className="bg-amber-100 p-4 rounded-md shadow-md gap-2">
-
-            {/* Titulo de la etiqueta */}
-            <input type="text"
-                placeholder="Titulo"
+        <form
+            onSubmit={handleAgregar}  // Manejas el submit aquí
+            className="bg-amber-100 p-4 rounded-b-md shadow-md gap-2 border-2 border-gray-400 border-dashed"
+        >
+            {/* Título de la etiqueta */}
+            <input
+                type="text"
+                placeholder="Titulo de la etiqueta"
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
-                className="uppercase text-3xl font-bold w-full "
+                className="uppercase text-3xl font-bold w-full"
             />
 
-            {/* Codigo de la etiqueta */}
-            <div className="flex  items-center text-2xl">
-                <label
-                    htmlFor="codigo"
-                    className="text-right mr-2"
-                >código : </label>
-                <input type="text"
+            {/* Código de la etiqueta */}
+            <div className="flex items-center text-2xl">
+                <label htmlFor="codigo" className="text-right mr-2">
+                    Código :
+                </label>
+                <input
+                    type="text"
                     id="codigo"
                     placeholder=" Codigo"
                     value={codigo}
@@ -49,14 +60,13 @@ export const FormEtiqueta = ({children}) => {
                 />
             </div>
 
-            {/* Descripcion de la etiqueta */}
+            {/* Descripción de la etiqueta */}
             <div className="w-full">
                 <textarea
-
                     value={descripcion}
                     placeholder="Ingrese información adicional (máximo 3 líneas)"
                     onChange={(e) => setDescripcion(e.target.value)}
-                    className="text-xl  w-full   focus:border-blue-500 focus:outline-none resize-none group-hover:border-gray-300 transition-colors duration-300"
+                    className="text-xl w-full focus:border-blue-500 focus:outline-none resize-none group-hover:border-gray-300 transition-colors duration-300"
                     rows="3"
                     maxLength="150"
                 />
@@ -64,9 +74,12 @@ export const FormEtiqueta = ({children}) => {
 
             {/* Precio de la etiqueta */}
             <div className="flex items-end justify-end ">
-                <div className="text-2xl flex font-bold  py-1 rounded-md ">
-                    <label className="text-right" htmlFor="precio">$</label>
-                    <input type="number"
+                <div className="text-2xl flex font-bold py-1 rounded-md ">
+                    <label className="text-right" htmlFor="precio">
+                        $
+                    </label>
+                    <input
+                        type="number"
                         id="precio"
                         placeholder=" Precio"
                         value={precio}
@@ -76,16 +89,14 @@ export const FormEtiqueta = ({children}) => {
                 </div>
             </div>
 
-            {/* Boton de generar etiqueta */}
+            {/* Botón de generar etiqueta */}
             <button
-                onClick={handleAgregar}
                 disabled={!titulo || !codigo}
-                type="button"
+                type="submit"  // mejor usar submit para el form
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 hover:cursor-pointer disabled:bg-gray-300 disabled:cursor-not-allowed"
             >
                 Agregar etiqueta
             </button>
-
         </form>
-    )
-}
+    );
+};

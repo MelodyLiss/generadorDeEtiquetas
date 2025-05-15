@@ -1,25 +1,31 @@
 import { FormEtiqueta } from "../components/FormEtiqueta.jsx";
-import { EtiquetaProvider } from "../context/EtiquetaProvider.jsx";
+import { NuevaEtiqueta } from "../components/NuevaEtiqueta.jsx";
+import { useContext } from "react"
+import { EtiquetaContext } from "../context/etiquetaContext"
+import { VistaPrevia } from "../components/VistaPrevia.jsx";
 
-export const Home = () => {
+export const Home = (children) => {
+    // Extraer el contexto
     
 
+
     return (
-        <EtiquetaProvider>
+        <>
             <header>
                 <h1 className="text-5xl text-center uppercase font-black p-4">Generador de Etiquetas</h1>
             </header>
 
-            <main className="flex justify-center bg-gray-100 gap-20">
+            <main className="flex justify-center  bg-gray-100 gap-20">
                 {/* Generador de etiqueta */}
-                <div>
-                    <h2>Completa tu etiqueta</h2>
+                <div className="flex flex-col justify-center  gap-0 my-8">
+                    <h2 className="text-center font-bold text-xl bg-red-400 p-2 text-white rounded-t-2xl">Ingresa los datos de la etiqueta</h2>
                     <FormEtiqueta />
-                </div>
-                {/* Vista previa de la etiqueta */}
-                <div>
 
+                    <p className="text-center p-2 text-sm font-stretch-ultra-expanded">Solo los campos de título y código son obligatorios </p>
                 </div>
+
+                {/* Vista previa de la etiqueta */}
+                <VistaPrevia/>
 
 
 
@@ -29,6 +35,6 @@ export const Home = () => {
                 <p>Generador de etiquetas creado por <a className="hover:text-black" href="https://www.linkedin.com/in/melodydev/">Melody.Dev 🍊</a></p>
             </footer>
 
-        </EtiquetaProvider>
+        </>
     );
 };
