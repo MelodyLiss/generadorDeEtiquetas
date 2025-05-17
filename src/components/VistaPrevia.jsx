@@ -23,6 +23,7 @@ export const VistaPrevia = () => {
     const [tipoHojaSeleccionada, setTipoHojaSeleccionada] = useState("a4");
     const [orientacionHoja, setOrientacionHoja] = useState("vertical");
     const [etiquetasPorHoja, setEtiquetasPorHoja] = useState(1);
+    const [escalaHoja, setEscalaHoja] = useState(0.3);
 
     /* Tamaño de la hoja */
     const tamaños = {
@@ -122,12 +123,15 @@ export const VistaPrevia = () => {
             </div>
 
             <ImpresionPagina
+                ref={printRef}
                 etiquetasPagina={etiquetasPagina}
                 styleGrid={styleGrid}
                 escalaTexto={escalaTexto}
                 hojaWidth={hojaWidth}
                 hojaHeight={hojaHeight}
                 escalaVista={escalaVista}
+                borrarEtiqueta={borrarEtiqueta}
+                duplicarEtiqueta={duplicarEtiqueta}
             />
 
 
