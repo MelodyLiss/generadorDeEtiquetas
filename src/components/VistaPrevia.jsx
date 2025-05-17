@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect ,useRef } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react'
 import { useReactToPrint } from 'react-to-print';
 import { FcFinePrint } from "react-icons/fc";
 import { FaPrint } from "react-icons/fa";
@@ -8,6 +8,7 @@ import { EtiquetaContext } from '../context/etiquetaContext'
 import { NuevaEtiqueta } from './NuevaEtiqueta'
 import { distribucionGrid } from '../utils/distribuicionGrid';
 import { dividirPaginas } from '../utils/dividirPaginas';
+import { ImpresionPagina } from './ImpresionPagina';
 
 
 
@@ -44,9 +45,33 @@ export const VistaPrevia = () => {
     const totalPaginas = paginas.length;
     const etiquetasPagina = paginas[paginaActual] || [];
 
+    const printRef = useRef(null)
+
+    /* imprimir hoja */
+    const handlePrint = useReactToPrint({
+        contentRef: printRef,
+        onBeforeGetContent: () => {
+            return new Promise((resolve) => {
+                setEscalaHoja(1);
+                setTimeout(resolve, 200);
+            });
+        },
+        onAfterPrint: () => {
+            setEscalaHoja(0.3);
+        },
+        pageStyle: `
+            @page {
+                size: ${tipoHojaSeleccionada} ${orientacionHoja};
+                margin: 0;
+            }
+        `,
+        documentTitle: 'Etiquetas'
+    });
+
     useEffect(() => {
         setPaginaActual(0);
     }, [etiquetasPorHoja]);
+
 
 
     return (
@@ -96,21 +121,17 @@ export const VistaPrevia = () => {
                 </div>
             </div>
 
-            <div className={`bg-gray-200   rounded-lg grid ${styleGrid} gap-0`} style={{ width: hojaWidth * escalaVista, height: hojaHeight * escalaVista }}>
+            <ImpresionPagina
+                etiquetasPagina={etiquetasPagina}
+                styleGrid={styleGrid}
+                escalaTexto={escalaTexto}
+                hojaWidth={hojaWidth}
+                hojaHeight={hojaHeight}
+                escalaVista={escalaVista}
+            />
 
-                {etiquetasPagina.map((etiqueta) => (
-                    <NuevaEtiqueta
-                        key={etiqueta.id}
-                        escalaTexto={escalaTexto}
-                        {...etiqueta}
-                        borrarEtiqueta={borrarEtiqueta}
-                        duplicarEtiqueta={duplicarEtiqueta}
-                    />
-                ))}
-            </div>
 
             <div>
-
                 <div className="flex justify-between mt-2">
                     <button
                         onClick={() => setPaginaActual(prev => Math.max(prev - 1, 0))}
@@ -130,12 +151,13 @@ export const VistaPrevia = () => {
                 <p className="text-sm text-gray-500 mt-2">
                     Página {paginaActual + 1} de {paginas.length}
                 </p>
-
             </div>
 
             <div>
-                <button className='bg-blue-200 hover:bg-blue-400 hover:text-white transition duration-300 rounded-lg p-2 mt-5'>
-                    <a className='flex items-center justify-center' href=""><FaPrint className='mr-2' />Imprimir</a>
+                <button className=' flex justify-center items-center bg-blue-200 hover:bg-blue-400 hover:text-white transition duration-300 rounded-lg p-2 mt-5'
+                    onClick={handlePrint}
+                >
+                    <FaPrint className='mr-2' />Imprimir
                 </button>
             </div>
 
