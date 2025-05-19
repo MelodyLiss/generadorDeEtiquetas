@@ -19,7 +19,6 @@ export const VistaPrevia = () => {
     const { etiquetas, borrarEtiqueta, duplicarEtiqueta } = useContext(EtiquetaContext);
 
 
-    const escalaVista = 0.3; // Escala para vista previa
     const [tipoHojaSeleccionada, setTipoHojaSeleccionada] = useState("a4");
     const [orientacionHoja, setOrientacionHoja] = useState("vertical");
     const [etiquetasPorHoja, setEtiquetasPorHoja] = useState(1);
@@ -129,7 +128,7 @@ export const VistaPrevia = () => {
                 escalaTexto={escalaTexto}
                 hojaWidth={hojaWidth}
                 hojaHeight={hojaHeight}
-                escalaVista={escalaVista}
+                escalaHoja={escalaHoja}
                 borrarEtiqueta={borrarEtiqueta}
                 duplicarEtiqueta={duplicarEtiqueta}
             />

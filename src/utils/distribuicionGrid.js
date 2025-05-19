@@ -7,7 +7,7 @@ export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
             case 1:
                 return {
                     styleGrid: "grid-cols-1 grid-rows-1",
-                    escalaTexto: 3,
+                    escalaTexto: 3.5,
                 };
             case 2:
                 return {
@@ -65,7 +65,7 @@ export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
             case 1:
                 return {
                     styleGrid: "grid-cols-1 grid-rows-1",
-                    escalaTexto: 3,
+                    escalaTexto: 4,
                 };
             case 2:
                 return {

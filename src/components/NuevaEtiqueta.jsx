@@ -7,10 +7,10 @@ import { MdOutlineDelete } from "react-icons/md";
 export const NuevaEtiqueta = ({ titulo, codigo, descripcion, precio, escalaTexto, id, borrarEtiqueta,
     duplicarEtiqueta }) => {
     const estiloTexto = {
-        titulo: { fontSize: `${0.5 * escalaTexto}rem` },
-        codigo: { fontSize: `${0.5 * escalaTexto}rem` },
-        descripcion: { fontSize: `${0.5 * escalaTexto}rem` },
-        precio: { fontSize: `${0.6 * escalaTexto}rem` },
+        titulo: { fontSize: `${0.5 * escalaTexto}em` },
+        codigo: { fontSize: `${0.5 * escalaTexto}em` },
+        descripcion: { fontSize: `${0.5 * escalaTexto}em` },
+        precio: { fontSize: `${0.6 * escalaTexto}em` },
     };
 
     return (
