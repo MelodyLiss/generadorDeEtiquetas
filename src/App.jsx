@@ -1,5 +1,5 @@
 import './App.css'
-import { Home } from './pages/Home.jsx'
+import { Home } from '@/pages/Home'
 import { EtiquetaProvider } from "./context/EtiquetaProvider.jsx"
 
 function App() {
