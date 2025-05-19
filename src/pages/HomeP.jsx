@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { EtiquetaContext } from "../context/etiquetaContext.js"
 import { VistaPrevia } from "../components/VistaPrevia.jsx";
 
-export const Home = (children) => {
+export const HomeP = (children) => {
     // Extraer el contexto
     
 
