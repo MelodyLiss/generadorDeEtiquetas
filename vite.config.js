@@ -17,5 +17,8 @@ export default defineConfig({
         manualChunks: undefined
       }
     }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
   }
 })
