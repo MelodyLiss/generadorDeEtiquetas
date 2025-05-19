@@ -6,15 +6,16 @@ export const ImpresionPagina = forwardRef(({ etiquetasPagina, styleGrid, hojaWid
     return (
         <div
             ref={ref}
-            className={`bg-gray-400 rounded-lg grid ${styleGrid} gap-0`}
-            style={{ width: hojaWidth * escalaHoja, height: hojaHeight *escalaHoja }}
-            
+            className={`border-2 border-gray-300 rounded-lg grid  ${styleGrid} gap-0`}
+            style={{ 
+                width: hojaWidth * escalaHoja, 
+                height: hojaHeight * escalaHoja 
+            }}
         >
             {etiquetasPagina.map((etiqueta) => (
                 <NuevaEtiqueta
                     key={etiqueta.id}
                     escalaTexto={escalaTexto}
-                    
                     {...etiqueta}
                     borrarEtiqueta={borrarEtiqueta}
                     duplicarEtiqueta={duplicarEtiqueta}

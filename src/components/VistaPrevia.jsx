@@ -37,7 +37,8 @@ export const VistaPrevia = () => {
     const hojaHeight = orientacionHoja === "vertical" ? height : width; // si vertical es falso queda asi
 
     /* Distribución de etiquetas */
-    const { styleGrid, escalaTexto } = distribucionGrid(Number(etiquetasPorHoja), orientacionHoja);
+    const { styleGrid, escalaTexto: escalaTextoBase } = distribucionGrid(Number(etiquetasPorHoja), orientacionHoja);
+    const escalaTexto = escalaTextoBase * (escalaHoja / 0.3); // Ajustamos la escala del texto proporcionalmente
 
     /* Dividir etiquetas en páginas */
     const [paginaActual, setPaginaActual] = useState(0);
@@ -47,16 +48,23 @@ export const VistaPrevia = () => {
 
     const printRef = useRef(null)
 
-    /* imprimir hoja */
+    /* Función especial para imprimir */
     const handlePrint = useReactToPrint({
         contentRef: printRef,
         onBeforeGetContent: () => {
             return new Promise((resolve) => {
+                // Guardamos el estado actual
+                const escalaActual = escalaHoja;
+                // Ajustamos la escala para impresión
                 setEscalaHoja(1);
-                setTimeout(resolve, 200);
+                // Esperamos a que React actualice el estado
+                setTimeout(() => {
+                    resolve();
+                }, 1000);
             });
         },
         onAfterPrint: () => {
+            // Restauramos la escala original
             setEscalaHoja(0.3);
         },
         pageStyle: `
@@ -64,9 +72,34 @@ export const VistaPrevia = () => {
                 size: ${tipoHojaSeleccionada} ${orientacionHoja};
                 margin: 0;
             }
+            @media print {
+                body {
+                    margin: 0;
+                    padding: 0;
+                }
+                div {
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                }
+                @page {
+                    margin: 0;
+                    padding: 0;
+                }
+            }
         `,
-        documentTitle: 'Etiquetas'
+        documentTitle: 'Etiquetas',
+        removeAfterPrint: true
     });
+
+    // Función para manejar el clic en imprimir
+    const handleImprimir = () => {
+        // Aseguramos que la escala sea 1 antes de imprimir
+        setEscalaHoja(1);
+        // Pequeño delay para asegurar que el estado se actualice
+        setTimeout(() => {
+            handlePrint();
+        }, 100);
+    };
 
     useEffect(() => {
         setPaginaActual(0);
@@ -121,20 +154,42 @@ export const VistaPrevia = () => {
                 </div>
             </div>
 
-            <ImpresionPagina
-                ref={printRef}
-                etiquetasPagina={etiquetasPagina}
-                styleGrid={styleGrid}
-                escalaTexto={escalaTexto}
-                hojaWidth={hojaWidth}
-                hojaHeight={hojaHeight}
-                escalaHoja={escalaHoja}
-                borrarEtiqueta={borrarEtiqueta}
-                duplicarEtiqueta={duplicarEtiqueta}
-            />
+            {/* Contenedor principal con ref para impresión */}
+            <div ref={printRef}>
+                {/* Vista previa normal */}
+                <div className="print:hidden">
+                    <ImpresionPagina
+                        etiquetasPagina={etiquetasPagina}
+                        styleGrid={styleGrid}
+                        escalaTexto={escalaTexto}
+                        hojaWidth={hojaWidth}
+                        hojaHeight={hojaHeight}
+                        escalaHoja={escalaHoja}
+                        borrarEtiqueta={borrarEtiqueta}
+                        duplicarEtiqueta={duplicarEtiqueta}
+                    />
+                </div>
 
+                {/* Versión para impresión que muestra todas las páginas */}
+                <div className="hidden print:block">
+                    {paginas.map((etiquetasPagina, index) => (
+                        <div key={index} className="mb-4">
+                            <ImpresionPagina
+                                etiquetasPagina={etiquetasPagina}
+                                styleGrid={styleGrid}
+                                escalaTexto={escalaTexto}
+                                hojaWidth={hojaWidth}
+                                hojaHeight={hojaHeight}
+                                escalaHoja={escalaHoja}
+                                borrarEtiqueta={borrarEtiqueta}
+                                duplicarEtiqueta={duplicarEtiqueta}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-            <div>
+            <div className="print:hidden">
                 <div className="flex justify-between mt-2">
                     <button
                         onClick={() => setPaginaActual(prev => Math.max(prev - 1, 0))}
@@ -156,9 +211,9 @@ export const VistaPrevia = () => {
                 </p>
             </div>
 
-            <div>
-                <button className=' flex justify-center items-center bg-blue-200 hover:bg-blue-400 hover:text-white transition duration-300 rounded-lg p-2 mt-5'
-                    onClick={handlePrint}
+            <div className="print:hidden">
+                <button className='flex justify-center items-center bg-blue-200 hover:bg-blue-400 hover:text-white transition duration-300 rounded-lg p-2 mt-5'
+                    onClick={handleImprimir}
                 >
                     <FaPrint className='mr-2' />Imprimir
                 </button>

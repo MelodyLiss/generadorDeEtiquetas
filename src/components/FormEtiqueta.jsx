@@ -39,7 +39,7 @@ export const FormEtiqueta = () => {
             {/* Título de la etiqueta */}
             <input
                 type="text"
-                placeholder="Titulo de la etiqueta"
+                placeholder="Título de la etiqueta"
                 value={titulo}
                 onChange={(e) => setTitulo(e.target.value)}
                 className="uppercase text-3xl font-bold w-full"
@@ -64,7 +64,7 @@ export const FormEtiqueta = () => {
             <div className="w-full">
                 <textarea
                     value={descripcion}
-                    placeholder="Ingrese información adicional (máximo 3 líneas)"
+                    placeholder="Ingrese información adicional (opcional)"
                     onChange={(e) => setDescripcion(e.target.value)}
                     className="text-xl w-full focus:border-blue-500 focus:outline-none resize-none group-hover:border-gray-300 transition-colors duration-300"
                     rows="3"

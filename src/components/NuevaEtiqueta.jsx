@@ -14,7 +14,7 @@ export const NuevaEtiqueta = ({ titulo, codigo, descripcion, precio, escalaTexto
     };
 
     return (
-        <div className="relative group">
+        <div className="relative group text-center">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                 <button className=" bg-blue-200 p-1 rounded-full hover:bg-blue-400 transition duration-300"
                 onClick={() => {
