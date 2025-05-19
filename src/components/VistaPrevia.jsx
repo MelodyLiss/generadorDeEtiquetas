@@ -50,21 +50,16 @@ export const VistaPrevia = () => {
 
     /* Función especial para imprimir */
     const handlePrint = useReactToPrint({
-        contentRef: printRef,
+        content: () => printRef.current,
         onBeforeGetContent: () => {
             return new Promise((resolve) => {
-                // Guardamos el estado actual
-                const escalaActual = escalaHoja;
-                // Ajustamos la escala para impresión
                 setEscalaHoja(1);
-                // Esperamos a que React actualice el estado
                 setTimeout(() => {
                     resolve();
                 }, 1000);
             });
         },
         onAfterPrint: () => {
-            // Restauramos la escala original
             setEscalaHoja(0.3);
         },
         pageStyle: `
@@ -93,12 +88,7 @@ export const VistaPrevia = () => {
 
     // Función para manejar el clic en imprimir
     const handleImprimir = () => {
-        // Aseguramos que la escala sea 1 antes de imprimir
-        setEscalaHoja(1);
-        // Pequeño delay para asegurar que el estado se actualice
-        setTimeout(() => {
-            handlePrint();
-        }, 100);
+        handlePrint();
     };
 
     useEffect(() => {

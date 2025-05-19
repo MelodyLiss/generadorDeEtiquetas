@@ -18,7 +18,7 @@ export const Home = (children) => {
             <main className="flex justify-center  bg-gray-100 gap-20">
                 {/* Generador de etiqueta */}
                 <div className="flex flex-col justify-center  gap-0 my-8">
-                    <h2 className="text-center font-bold text-xl bg-red-400 p-2 text-white rounded-t-2xl">Ingresa los datos de la etiqueta</h2>
+                    <h2 className="text-center font-bold text-xl bg-red-400 p-2 text-white rounded-t-2xl">Ingrese los datos de la etiqueta</h2>
                     <FormEtiqueta />
 
                     <p className="text-center p-2 text-sm font-stretch-ultra-expanded">Solo los campos de título y código son obligatorios </p>
