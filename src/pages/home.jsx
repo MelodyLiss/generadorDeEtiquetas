@@ -1,7 +1,7 @@
 import { FormEtiqueta } from "../components/FormEtiqueta.jsx";
 import { NuevaEtiqueta } from "../components/NuevaEtiqueta.jsx";
 import { useContext } from "react"
-import { EtiquetaContext } from "../context/etiquetaContext"
+import { EtiquetaContext } from "../context/etiquetaContext.js"
 import { VistaPrevia } from "../components/VistaPrevia.jsx";
 
 export const Home = (children) => {

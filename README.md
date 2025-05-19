@@ -18,7 +18,7 @@ Este proyecto fue desarrollado a petición de un cliente que necesitaba una solu
 - 📊 Distribución flexible de etiquetas por hoja (1 a 12 etiquetas)
 - 🖨️ Vista previa de impresión
 - 📱 Diseño responsivo
-- 🎨 Interfaz intuitiva y fácil de usar
+- 🎨 Interfaz intuitiva y fácil de usarI
 
 ## Tecnologías Utilizadas
 - React.js
