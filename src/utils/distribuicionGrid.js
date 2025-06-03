@@ -1,6 +1,6 @@
 
 
-export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
+export const distribucionGrid = (etiquetasPorHoja, orientacionHoja) => {
 
     if (orientacionHoja === "vertical") {
         switch (etiquetasPorHoja) {
@@ -54,13 +54,34 @@ export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
                     styleGrid: "grid-cols-2 grid-rows-5",
                     escalaTexto: 1,
                 };
+            case 15:
+                return {
+                    styleGrid: "grid-cols-3 grid-rows-5",
+                    escalaTexto: 1,
+                };
+            case 16:
+                return {
+                    styleGrid: "grid-cols-4 grid-rows-4",
+                    escalaTexto: 1,
+                };
+            case 20:
+                return {
+                    styleGrid: "grid-cols-4 grid-rows-5",
+                    escalaTexto: 1
+                };
+            case 24:
+                return {
+                    styleGrid: "grid-cols-5 grid-rows-5",
+                    escalaTexto: 1,
+                };
+
             default:
                 return {
                     styleGrid: " grid-cols-2 grid-rows-6 ",
                     escalaTexto: 1,
                 };
         }
-    } else{
+    } else {
         switch (etiquetasPorHoja) {
             case 1:
                 return {
@@ -110,30 +131,30 @@ export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
             case 15:
                 return {
                     styleGrid: "grid-cols-5 grid-rows-3",
-                    escalaTexto: 0.2,
+                    escalaTexto: 1,
                 };
             case 16:
                 return {
                     styleGrid: "grid-cols-4 grid-rows-4",
-                    escalaTexto: 0.2,
+                    escalaTexto: 1,
                 };
-             case 20:
+            case 20:
                 return {
-                    styleGrid: "grid-cols-4 grid-rows-5",
-                    escalaTexto: 0.2,
+                    styleGrid: "grid-cols-5 grid-rows-4",
+                    escalaTexto: 1,
                 };
             case 24:
                 return {
                     styleGrid: "grid-cols-5 grid-rows-5",
-                    escalaTexto: 0.1,
+                    escalaTexto: 1,
                 };
             default:
                 return {
                     styleGrid: " grid-cols-4 grid-rows-3 ",
                     escalaTexto: 1,
                 };
-    }
+        }
 
-}
+    }
 
 }

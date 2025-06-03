@@ -13,6 +13,7 @@ export const ImpresionPagina = forwardRef(({ etiquetasPagina, styleGrid, hojaWid
             }}
         >
             {etiquetasPagina.map((etiqueta) => (
+                <div className=' flex justify-center items-center'>
                 <NuevaEtiqueta
                     key={etiqueta.id}
                     escalaTexto={escalaTexto}
@@ -20,6 +21,7 @@ export const ImpresionPagina = forwardRef(({ etiquetasPagina, styleGrid, hojaWid
                     borrarEtiqueta={borrarEtiqueta}
                     duplicarEtiqueta={duplicarEtiqueta}
                 />
+                </div>
             ))}
         </div>
     );

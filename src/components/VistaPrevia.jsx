@@ -69,7 +69,7 @@ export const VistaPrevia = () => {
             }
             @media print {
                 body {
-                    margin: 0;
+                    margin: 2;
                     padding: 0;
                 }
                 div {
@@ -138,6 +138,7 @@ export const VistaPrevia = () => {
                         <option value="6">6 por hoja</option>
                         <option value="8">8 por hoja</option>
                         <option value="9">9 por hoja</option>
+                        <option value="10">10 por hoja</option>
                         <option value="12">12 por hoja</option>
                         <option value="15">15 por hoja</option>
                         <option value="16">16 por hoja</option>
@@ -167,7 +168,7 @@ export const VistaPrevia = () => {
                 {/* Versión para impresión que muestra todas las páginas */}
                 <div className="hidden print:block">
                     {paginas.map((etiquetasPagina, index) => (
-                        <div key={index} className="mb-4">
+                        <div key={index} className="">
                             <ImpresionPagina
                                 etiquetasPagina={etiquetasPagina}
                                 styleGrid={styleGrid}
