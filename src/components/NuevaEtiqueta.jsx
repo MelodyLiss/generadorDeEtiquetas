@@ -38,7 +38,7 @@ export const NuevaEtiqueta = ({ titulo, codigo, descripcion, precio, escalaTexto
                     <p className="font-medium text-center" style={estiloTexto.descripcion}>{descripcion}</p>
                 </div>
 
-                {precio.trim() && (<p className="font-black text-end mr-1" style={estiloTexto.precio}>${precio}</p>)}
+                {precio.trim() && (<p className="font-black text-end mr-4" style={estiloTexto.precio}>${precio}</p>)}
                 {/* si precio existe entonces muestra ese p */}
             </div>
         </div>
