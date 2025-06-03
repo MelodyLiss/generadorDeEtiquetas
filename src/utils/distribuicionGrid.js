@@ -122,6 +122,11 @@ export const distribucionGrid = (etiquetasPorHoja,orientacionHoja) => {
                     styleGrid: "grid-cols-4 grid-rows-5",
                     escalaTexto: 0.2,
                 };
+            case 24:
+                return {
+                    styleGrid: "grid-cols-5 grid-rows-5",
+                    escalaTexto: 0.1,
+                };
             default:
                 return {
                     styleGrid: " grid-cols-4 grid-rows-3 ",

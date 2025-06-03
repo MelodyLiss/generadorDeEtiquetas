@@ -142,6 +142,7 @@ export const VistaPrevia = () => {
                         <option value="15">15 por hoja</option>
                         <option value="16">16 por hoja</option>
                         <option value="20">20 por hoja</option>
+                        <option value="25">25 por hoja</option>
 
                     </select>
                 </div>
